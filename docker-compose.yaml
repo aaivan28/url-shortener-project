@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:4.4.10-focal
+    ports:
+      - 27017:27017
+
+  redis:
+    image: redis:8.0-alpine
+    ports:
+      - 6379:6379
+
+  url-shortener-admin:
+    build:
+      context: ./app-url-shortener-admin-api
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8080
+    depends_on:
+      - mongo
+
+  url-shortener:
+    build:
+      context: ./app-url-shortener-api
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo

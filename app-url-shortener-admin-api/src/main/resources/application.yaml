@@ -1,0 +1,28 @@
+server:
+  port: 8081
+spring:
+  cache:
+    type: redis
+    redis:
+      enable-statistics: true
+      key-prefix: url-shortener-cache
+      use-key-prefix: true
+      cache-null-values: false
+      time-to-live: 1H
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+    # Mongo service
+    mongodb:
+      host: localhost
+      port: 27017
+      database: url-shortener
+      auto-index-creation: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
