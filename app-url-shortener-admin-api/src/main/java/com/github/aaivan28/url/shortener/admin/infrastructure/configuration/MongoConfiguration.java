@@ -4,6 +4,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence")
+@EnableMongoRepositories(basePackages = "com.github.aaivan28.url.shortener.admin.infrastructure.adapter.outbound.persistence")
 public class MongoConfiguration {
 }

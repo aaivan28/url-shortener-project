@@ -1,16 +1,16 @@
-package com.github.aaivan28.url.shortener.admin.infrastructure.adapter.model;
+package com.github.aaivan28.url.shortener.admin.infrastructure.adapter.inbound.rest.dto;
 
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
-import java.util.List;
+import java.util.Collection;
 
 @Value
 @Jacksonized
 @Builder(toBuilder = true)
-public class PaginateResponse<T> {
-    List<T> content;
+public class PaginateResponseDTO<T> {
+    Collection<T> content;
     int page;
     int size;
     long totalElements;

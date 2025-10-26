@@ -5,7 +5,7 @@ import lombok.Builder;
 import java.util.Collection;
 
 @Builder(toBuilder = true)
-public record Page<T>(
+public record PageModel<T>(
         Collection<T> content,
         int page,
         int size,

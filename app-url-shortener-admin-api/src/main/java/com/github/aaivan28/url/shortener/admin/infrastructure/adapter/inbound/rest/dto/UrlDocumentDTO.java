@@ -1,4 +1,4 @@
-package com.github.aaivan28.url.shortener.admin.infrastructure.adapter.model;
+package com.github.aaivan28.url.shortener.admin.infrastructure.adapter.inbound.rest.dto;
 
 import lombok.Builder;
 import lombok.extern.jackson.Jacksonized;

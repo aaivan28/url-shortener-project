@@ -5,12 +5,11 @@ import lombok.Builder;
 import java.time.LocalDateTime;
 
 @Builder
-public record UrlDocument(
-        String key,
+public record UrlDocumentModel(
+        String code,
         String url,
         String description,
         boolean enabled,
         LocalDateTime createdAt,
         LocalDateTime updatedAt) {
-
 }

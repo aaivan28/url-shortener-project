@@ -1,4 +1,4 @@
-package com.github.aaivan28.url.shortener.admin.infrastructure.adapter.outbound.persistence;
+package com.github.aaivan28.url.shortener.admin.infrastructure.adapter.outbound.persistence.model;
 
 import lombok.Builder;
 import lombok.Value;
