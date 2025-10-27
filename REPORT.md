@@ -47,6 +47,8 @@ app-url-shortener-api/
     │   │   └── properties/
     │   ├── outbound/
     │   │   └── persistence/
+    │   │       ├── repository/        # Repositorios MongoDB
+    │   │       └── model/             # Modelos de documento
     │   └── converter/
     └── configuration/
 ```
@@ -126,7 +128,7 @@ public interface UrlMongoRepository extends CrudRepository<UrlDocument, String> 
 }
 ```
 
-**Ubicación:** `infrastructure/adapter/outbound/persistence/UrlMongoRepository.java:12`
+**Ubicación:** `infrastructure/adapter/outbound/persistence/repository/UrlMongoRepository.java:12`
 
 **Ventajas:**
 - ✅ Caché implementado en la capa de infraestructura
@@ -157,13 +159,25 @@ public interface UrlMongoRepository extends CrudRepository<UrlDocument, String> 
 
 #### Outbound Adapters
 
-**1. MongoDB Repository Adapter**
-- **Ubicación:** `infrastructure/adapter/outbound/persistence/MongoRepositoryAdapter.java:12`
+**1. MongoDB Repository Adapter** ✅ **REORGANIZADO**
+- **Ubicación:** `infrastructure/adapter/outbound/persistence/repository/MongoRepositoryAdapter.java:12`
 - Implementa `UrlRepository`
 - Filtra documentos deshabilitados
 - Usa `ConversionService` para transformaciones
+- ✅ Ahora organizado en subdirectorio `repository/`
 
-**2. Document Converter**
+**2. MongoDB Repository Interface**
+- **Ubicación:** `infrastructure/adapter/outbound/persistence/repository/UrlMongoRepository.java`
+- Extiende Spring Data `CrudRepository`
+- Implementa caché con `@Cacheable`
+- ✅ Ahora organizado en subdirectorio `repository/`
+
+**3. Document Model**
+- **Ubicación:** `infrastructure/adapter/outbound/persistence/model/UrlDocument.java`
+- Modelo de documento MongoDB con `@Document`
+- ✅ Ahora organizado en subdirectorio `model/`
+
+**4. Document Converter**
 - **Ubicación:** `infrastructure/adapter/converter/UrlDocumentStringConverter.java:9`
 - Convierte `UrlDocument` a `String`
 - Encapsula lógica de extracción
@@ -341,6 +355,33 @@ public class UrlService implements UrlUsesCases { ... }
 **Resultado:**
 - Compilación exitosa de anotaciones Lombok
 - `@RequiredArgsConstructor`, `@Slf4j`, `@Value` funcionan correctamente
+
+### 4. ✅ Reorganización de la Capa de Persistencia
+
+**Antes:**
+```
+infrastructure/adapter/outbound/persistence/
+├── MongoRepositoryAdapter.java
+├── UrlMongoRepository.java
+└── UrlDocument.java
+```
+
+**Ahora:**
+```
+infrastructure/adapter/outbound/persistence/
+├── repository/
+│   ├── MongoRepositoryAdapter.java
+│   └── UrlMongoRepository.java
+└── model/
+    └── UrlDocument.java
+```
+
+**Justificación:**
+- Separación clara entre repositorios y modelos de datos
+- Mejora la navegabilidad del código
+- Facilita la adición de nuevos modelos o repositorios
+- Sigue el patrón de organización común en proyectos Spring Data
+- Mayor cohesión dentro de cada subdirectorio
 
 ---
 
@@ -557,9 +598,9 @@ Este módulo está **listo para producción** y puede servir como **referencia a
 - `infrastructure/adapter/inbound/rest/UrlShortenerController.java`
 - `infrastructure/adapter/inbound/handler/UrlExceptionHandler.java`
 - `infrastructure/adapter/inbound/properties/UrlProperties.java`
-- `infrastructure/adapter/outbound/persistence/MongoRepositoryAdapter.java`
-- `infrastructure/adapter/outbound/persistence/UrlMongoRepository.java`
-- `infrastructure/adapter/outbound/persistence/UrlDocument.java`
+- `infrastructure/adapter/outbound/persistence/repository/MongoRepositoryAdapter.java` ✅
+- `infrastructure/adapter/outbound/persistence/repository/UrlMongoRepository.java` ✅
+- `infrastructure/adapter/outbound/persistence/model/UrlDocument.java` ✅
 - `infrastructure/adapter/converter/UrlDocumentStringConverter.java`
 - `infrastructure/configuration/ApplicationConfiguration.java`
 - `infrastructure/configuration/ConverterConfiguration.java`
@@ -567,6 +608,8 @@ Este módulo está **listo para producción** y puede servir como **referencia a
 - `infrastructure/configuration/MongoConfiguration.java`
 - `infrastructure/configuration/PropertiesConfiguration.java`
 - `UrlShortenerApplication.java`
+
+**Nota:** Los archivos marcados con ✅ han sido reorganizados en subdirectorios para mejor separación de responsabilidades.
 
 ### Clases de Test (6)
 
@@ -581,6 +624,6 @@ Este módulo está **listo para producción** y puede servir como **referencia a
 
 ---
 
-**Fecha del Análisis:** 2025-10-12
+**Fecha del Análisis:** 2025-10-26
 **Versión del Módulo:** 1.0.0-SNAPSHOT
 **Analista:** Claude Code Architecture Review

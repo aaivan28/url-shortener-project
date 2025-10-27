@@ -34,6 +34,11 @@ public class MongoRepositoryAdapter implements UrlRepository {
     }
 
     @Override
+    public void deleteUrlDocument(final String code) {
+        this.repository.deleteByKey(code);
+    }
+
+    @Override
     public boolean existsByKey(final String key) {
         return this.repository.existsByKey(key);
     }

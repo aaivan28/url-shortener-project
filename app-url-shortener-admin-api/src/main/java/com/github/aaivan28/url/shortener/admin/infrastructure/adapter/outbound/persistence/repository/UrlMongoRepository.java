@@ -13,4 +13,5 @@ public interface UrlMongoRepository extends CrudRepository<UrlDocument, String> 
     Page<UrlDocument> findAll(final Pageable pageable);
     Optional<UrlDocument> findByKey(final String key);
     boolean existsByKey(final String key);
+    void deleteByKey(final String key);
 }

@@ -10,5 +10,6 @@ public interface UrlRepository {
     PageModel<UrlDocumentModel> searchUrlDocument(final int page, final int size);
     Optional<UrlDocumentModel> getUrlDocument(final String code);
     UrlDocumentModel saveUrlDocument(final UrlDocumentModel urlDocumentModel);
+    void deleteUrlDocument(final String code);
     boolean existsByKey(final String key);
 }

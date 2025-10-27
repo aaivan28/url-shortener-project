@@ -23,6 +23,7 @@
         <micrometer.version>1.15.1</micrometer.version>
         <lombok.version>1.18.38</lombok.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
+        <jackson.version>2.20.0</jackson.version>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +73,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
                 <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
 
             <!-- Micrometer dependencies-->

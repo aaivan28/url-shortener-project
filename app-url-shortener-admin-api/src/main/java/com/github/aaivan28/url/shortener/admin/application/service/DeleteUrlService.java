@@ -1,5 +1,6 @@
 package com.github.aaivan28.url.shortener.admin.application.service;
 
+import com.github.aaivan28.url.shortener.admin.application.exception.UrlNotFoundException;
 import com.github.aaivan28.url.shortener.admin.domain.port.inbound.DeleteUrlUsesCases;
 import com.github.aaivan28.url.shortener.admin.domain.port.outbound.UrlRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,4 +9,12 @@ import lombok.RequiredArgsConstructor;
 public class DeleteUrlService implements DeleteUrlUsesCases {
 
     private final UrlRepository repository;
+
+    @Override
+    public void deleteUrl(final String code) {
+        if (!this.repository.existsByKey(code)) {
+            throw new UrlNotFoundException();
+        }
+        this.repository.deleteUrlDocument(code);
+    }
 }

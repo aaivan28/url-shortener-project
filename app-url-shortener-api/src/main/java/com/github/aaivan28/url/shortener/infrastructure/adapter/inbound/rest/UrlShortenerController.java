@@ -17,7 +17,7 @@ public class UrlShortenerController {
 
     private final UrlUsesCases urlUsesCases;
 
-    @GetMapping("/{urlKey}")
+    @GetMapping("/api/v1/document/{urlKey}")
     @Timed(value = "url.shortener.api.controller.redirect", description = "Redirect to the original URL")
     public void redirect(final HttpServletResponse response, final @MeterTag(key = "key") @PathVariable("urlKey") String urlKey) throws IOException {
         response.sendRedirect(this.urlUsesCases.getUrl(urlKey));

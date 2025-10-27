@@ -1,6 +1,7 @@
-package com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence;
+package com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence.repository;
 
 import com.github.aaivan28.url.shortener.domain.port.outbound.UrlRepository;
+import com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence.model.UrlDocument;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;

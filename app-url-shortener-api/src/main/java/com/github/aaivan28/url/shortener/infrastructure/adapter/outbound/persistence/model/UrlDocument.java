@@ -1,4 +1,4 @@
-package com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence;
+package com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence.model;
 
 import lombok.Builder;
 import lombok.Value;
@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Value
 @Builder
@@ -22,7 +22,5 @@ public class UrlDocument {
     String key;
     String description;
     String url;
-    LocalDateTime createdAt;
-    LocalDateTime updatedAt;
     boolean enabled;
 }

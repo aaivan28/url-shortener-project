@@ -1,6 +1,6 @@
 package com.github.aaivan28.url.shortener.infrastructure.adapter.converter;
 
-import com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence.UrlDocument;
+import com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence.model.UrlDocument;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

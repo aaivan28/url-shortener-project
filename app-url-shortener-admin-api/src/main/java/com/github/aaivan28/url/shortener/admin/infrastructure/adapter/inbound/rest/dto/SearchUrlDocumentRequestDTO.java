@@ -3,5 +3,7 @@ package com.github.aaivan28.url.shortener.admin.infrastructure.adapter.inbound.r
 import lombok.Builder;
 
 @Builder(toBuilder = true)
-public record SearchUrlDocumentRequestDTO() {
+public record SearchUrlDocumentRequestDTO(
+        int page,
+        int size) {
 }

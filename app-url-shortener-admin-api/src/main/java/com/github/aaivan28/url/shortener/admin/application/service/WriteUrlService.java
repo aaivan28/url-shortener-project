@@ -10,11 +10,12 @@ import lombok.RequiredArgsConstructor;
 public class WriteUrlService implements WriteUrlUsesCases {
 
     private final UrlRepository repository;
-    private final UrlBuilderService urlBuilderService;
+    private final UrlDocumentBuilderService urlBuilderService;
 
     @Override
     public UrlDocumentModel createUrlDetail(final CreateUrlDocumentModel createUrlDocumentModel) {
-        final UrlDocumentModel urlDocumentModel = this.urlBuilderService.buildUrlDocumentModel(createUrlDocumentModel);
+        final UrlDocumentModel urlDocumentModel = this.urlBuilderService.createFrom(createUrlDocumentModel, this.repository::existsByKey);
         return this.repository.saveUrlDocument(urlDocumentModel);
     }
+
 }

@@ -1,5 +1,8 @@
 package com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence;
 
+import com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence.model.UrlDocument;
+import com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence.repository.MongoRepositoryAdapter;
+import com.github.aaivan28.url.shortener.infrastructure.adapter.outbound.persistence.repository.UrlMongoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

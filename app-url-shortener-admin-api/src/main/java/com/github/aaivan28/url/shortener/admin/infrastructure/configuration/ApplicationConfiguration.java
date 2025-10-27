@@ -1,8 +1,13 @@
 package com.github.aaivan28.url.shortener.admin.infrastructure.configuration;
 
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.github.aaivan28.url.shortener.admin.application.service.DeleteUrlService;
 import com.github.aaivan28.url.shortener.admin.application.service.ReadUrlService;
-import com.github.aaivan28.url.shortener.admin.application.service.UrlBuilderService;
+import com.github.aaivan28.url.shortener.admin.application.service.UrlDocumentBuilderService;
 import com.github.aaivan28.url.shortener.admin.application.service.WriteUrlService;
 import com.github.aaivan28.url.shortener.admin.domain.port.inbound.DeleteUrlUsesCases;
 import com.github.aaivan28.url.shortener.admin.domain.port.inbound.ReadUrlUsesCases;
@@ -22,8 +27,8 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    UrlBuilderService urlDocumentBuilderService(final UrlRepository repository, final Clock clock) {
-        return new UrlBuilderService(repository, clock);
+    UrlDocumentBuilderService urlDocumentBuilderService(final Clock clock) {
+        return new UrlDocumentBuilderService(clock);
     }
 
     @Bean
@@ -32,7 +37,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    WriteUrlUsesCases writeUrlUsesCases(final UrlRepository repository, final UrlBuilderService urlBuilderService) {
+    WriteUrlUsesCases writeUrlUsesCases(final UrlRepository repository, final UrlDocumentBuilderService urlBuilderService) {
         return new WriteUrlService(repository, urlBuilderService);
     }
 

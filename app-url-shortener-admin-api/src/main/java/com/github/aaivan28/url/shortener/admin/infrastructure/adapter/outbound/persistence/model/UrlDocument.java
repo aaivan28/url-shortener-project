@@ -6,7 +6,9 @@ import lombok.extern.jackson.Jacksonized;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Value
@@ -14,15 +16,18 @@ import java.time.LocalDateTime;
 @Jacksonized
 @Document(UrlDocument.COLLECTION_NAME)
 public class UrlDocument {
+
     public static final String COLLECTION_NAME = "shortened_url";
+    public static final String KEY_FIELD = "key";
 
     @Id
     String id;
     @Indexed(unique = true)
+    @Field(KEY_FIELD)
     String key;
     String description;
     String url;
-    LocalDateTime createdAt;
-    LocalDateTime updatedAt;
+    Instant createdAt;
+    Instant updatedAt;
     boolean enabled;
 }

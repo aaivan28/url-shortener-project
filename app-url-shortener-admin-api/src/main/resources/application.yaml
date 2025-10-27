@@ -1,14 +1,20 @@
 server:
   port: 8081
 spring:
+  jackson:
+    default-property-inclusion: non_null
+    deserialization:
+      READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE: true
   cache:
     type: redis
     redis:
       enable-statistics: true
-      key-prefix: url-shortener-cache
+      key-prefix: url-
       use-key-prefix: true
       cache-null-values: false
       time-to-live: 1H
+    cache-names:
+      - document
   data:
     redis:
       host: localhost
